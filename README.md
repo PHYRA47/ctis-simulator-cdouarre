@@ -31,6 +31,31 @@ Customization :
 * Chose whether you're providing a hyperspectral cube or the intermediary cube directly with ```--field_stop```
 * The CTIS action can be modelized by a matrix S between the reduced hyperspectral cube and the CTIS image. This matrix can be computed with ```--compute_system_matrix```. It can be useful for reconstruction approaches. Note however that the computation time can be quite long.
 
+### Flags and Arguments
+
+- `-I`, `--input_dir` (required): Specifies the input directory containing hyperspectral cubes in TIFF format.
+- `-O`, `--output_dir` (required): Specifies the output directory where the CTIS images will be saved.
+- `-o0`, `--o0_attenuator`: Sets the attenuation coefficient of the 0th order. Default is `0.1`.
+- `-g`, `--gain`: Sets the gain of the CCD. Default is `50`.
+- `-w_min`, `--min_wavelength`: Sets the minimum wavelength of the hyperspectral cube. Default is `400`.
+- `-w_max`, `--max_wavelength`: Sets the maximum wavelength of the hyperspectral cube. Default is `1000`.
+- `-s`, `--spectral_sensitivity`: Specifies the path to a CSV file defining the spectral sensitivity of the sensor.
+- `-gr`, `--grating`: Sets the grating geometry. This argument must be of the form `<1|2><R|C|H><even positive int less than 116>`. Default is `1R60`.
+- `-l`, `--fpa_length`: Sets the length of the CTIS image. Default is `512`.
+- `-m`, `--compute_system_matrix`: If set, the system matrix representing the CTIS action will be computed. This can be very long.
+- `-fs`, `--field_stop`: If set, the script will apply an objective lens and a field stop to reduce the cube.
+- `-v`, `--verbose`: If set, the script will print additional information during execution.
+
+### Example Usage
+
+To customize the CTIS geometries and other parameters:
+
+```sh
+python main.py -I <input directory> -O <output directory> -o0 0.2 -g 60 -w_min 450 -w_max 950 -s ressources/spectral_sensitivity.csv -gr 2H80 -l 600 -m -fs -v
+```
+
+This command sets various parameters such as the attenuation coefficient, gain, wavelength range, spectral sensitivity, grating geometry, FPA length, and enables the computation of the system matrix, field stop effect, and verbose mode.
+
 ___
 ### Bibliography 
 
