@@ -1,0 +1,8 @@
+# Ignore output files
+output*
+
+# Ignore temporary files
+ressources*
+
+# Ignore pycache files
+helpers/__pycache__/
